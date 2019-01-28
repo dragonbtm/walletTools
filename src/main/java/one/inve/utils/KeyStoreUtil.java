@@ -49,15 +49,13 @@ public class KeyStoreUtil {
      * @throws IOException
      */
     public static void generateKeyStore(String password,String data ,String outpath) throws IOException {
-        password = "888999";
-//        InputStream fis = getResource("classpath:" + KEYSTORE_NAME);
-        System.out.println(" bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-        InputStream fis = new FileInputStream(new File("D:/zz.keystore"));
+        InputStream fis = ResouceUtil.getResource("classpath:" + KEYSTORE_NAME);
         OutputStream os = null;
         try {
             // 读取keystore文件转换为keystore密钥库对象
             // 生成证书的类型为jceks
             KeyStore keyStore = KeyStore.getInstance("jceks");
+
             keyStore.load(fis, password.toCharArray());
             fis.close();
             // 一旦加载了 keystore，就能够从 keystore 读取现有条目，或向 keystore 写入新条目：
@@ -100,7 +98,6 @@ public class KeyStoreUtil {
             }
         }
     }
-
 
 
     public static String readkeyStore(String password,String readPath) {

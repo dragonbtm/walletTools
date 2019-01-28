@@ -22,7 +22,7 @@ import static org.bitcoinj.core.Sha256Hash.wrap;
  */
 public class SignMain {
 
-    public static void main(String[] args) throws Exception {
+   /* public static void main(String[] args) throws Exception {
         Mnemonic mn = new Mnemonic("","");
         byte[] priKey = mn.getxPrivKey();
         System.out.println("私钥" + ByteUtil.bytes2hex(priKey));
@@ -91,7 +91,7 @@ public class SignMain {
 
 
         }
-    }
+    }*/
 
     //signStr
     public static String signStr(ECKey key, String message ) {

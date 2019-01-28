@@ -30,72 +30,43 @@
 
     <build>
     <plugins>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-            <source>${jdk.version}</source>
-            <target>${jdk.version}</target>
-            <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-    </plugin>
-
-    <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-            <appendAssemblyId>false</appendAssemblyId>
-            <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
-            <archive>
-                <manifest>
-                    <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
-                    <useUniqueVersions>false</useUniqueVersions>
-                    <addClasspath>true</addClasspath>
-                    <classpathPrefix>lib/</classpathPrefix>
-                </manifest>
-            </archive>
-        </configuration>
-        <executions>
-            <execution>
-                <id>make-assembly</id>
-                <phase>package</phase>
-                <goals>
-                    <goal>assembly</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
-
-
-
-
-          <!--打包-->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.5.5</version>
+            <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
-                <archive>
-                    <manifest>
-                        <mainClass>one.inve.wallet.WalletUtil</mainClass>
-                    </manifest>
-                </archive>
+                <source>${jdk.version}</source>
+                <target>${jdk.version}</target>
+                <encoding>${project.build.sourceEncoding}</encoding>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <appendAssemblyId>false</appendAssemblyId>
                 <descriptorRefs>
                     <descriptorRef>jar-with-dependencies</descriptorRef>
                 </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>one.inve.wallet.WalletUtil</mainClass>
+                        <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                        <useUniqueVersions>false</useUniqueVersions>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                    </manifest>
+                </archive>
             </configuration>
             <executions>
                 <execution>
                     <id>make-assembly</id>
                     <phase>package</phase>
                     <goals>
-                        <goal>single</goal>
+                        <goal>assembly</goal>
                     </goals>
                 </execution>
             </executions>
         </plugin>
-
     </plugins>
     </build>
 
