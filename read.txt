@@ -1,0 +1,2 @@
+--打包命令 需要在linux環境下 在控制臺進行打包
+mvn clean install

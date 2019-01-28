@@ -54,7 +54,7 @@ public class KeyStoreUtil {
             KeyStore.ProtectionParameter param = new KeyStore.PasswordProtection(keypass.toCharArray());
             KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, param);
             PrivateKey myPrivateKey = pkEntry.getPrivateKey();
-            System.out.println("获取的私钥是：" + myPrivateKey.toString());
+//            System.out.println("获取的私钥是：" + myPrivateKey.toString());
             // 根据给定的字节数组构造一个密钥
             String pd = "decryp pwd";
             javax.crypto.SecretKey mySecretKey = new SecretKeySpec(data.getBytes(), "JKS");

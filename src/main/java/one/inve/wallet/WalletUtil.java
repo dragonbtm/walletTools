@@ -20,6 +20,7 @@ public class WalletUtil {
 
 
     public static void main(String[] args) throws IOException {
+        System.out.println("-------------start---------------");
         System.out.println("Welcome ~!");
         Scanner sc;
         boolean flag = true;
@@ -39,20 +40,26 @@ public class WalletUtil {
         }
         String words = StringUtils.join(mn.getMnemonic().toArray() ," ");
         JSONObject json = new JSONObject();
-        System.out.println("生成助记词:" + words);
+
         json.put("mnemonic",words);
         json.put("passphrase",salt);
         String data = json.toJSONString();
+        System.out.println("----------------------------");
+        System.out.println("生成電子錢包:");
+        System.out.println("words: " + words);
+        System.out.println("passphrase: " + salt);
+        System.out.println("----------------------------");
 
-        System.out.println(words);
         String path = WalletUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1);
         System.out.println("生成keystore文件:(" + keystoreName + ")");
-
+        System.out.println("----------------------------");
         String password = "888999";
         try {
             KeyStoreUtil.generateKeyStore(password,data, keystoreName);
 //            String result  = KeyStoreUtil.readkeyStore("888999",path+keystoreName);
 //            System.out.println(result);
+            System.out.println("keystore生成成功~!");
+            System.out.println("-------------end---------------");
         } catch (IOException e) {
             System.out.println("keystore生成失败~!");
         }
