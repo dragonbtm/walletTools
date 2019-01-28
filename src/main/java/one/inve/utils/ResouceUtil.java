@@ -6,9 +6,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 
 /**
  * @Author: zz

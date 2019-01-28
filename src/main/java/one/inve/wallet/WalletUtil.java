@@ -1,9 +1,10 @@
 package one.inve.wallet;
 
+
 import com.alibaba.fastjson.JSONObject;
 import one.inve.mnemonic.Mnemonic;
 import one.inve.utils.KeyStoreUtil;
-import org.apache.commons.lang.StringUtils;
+import one.inve.utils.StringUtils;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import java.util.Scanner;
  * @Modified By
  */
 public class WalletUtil {
-    private static String keystoreName = "zz.keystore";
+    private static String keystoreName = "wallet.keystore";
 
 
     public static void main(String[] args) throws IOException {
@@ -45,11 +46,11 @@ public class WalletUtil {
 
         System.out.println(words);
         String path = WalletUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1);
-        System.out.println(path+keystoreName);
-        System.out.println("生成keystore文件:("+ path + keystoreName + ")");
+        System.out.println("生成keystore文件:(" + keystoreName + ")");
 
+        String password = "888999";
         try {
-            KeyStoreUtil.generateKeyStore(null,data,"D:/zz.keystore");
+            KeyStoreUtil.generateKeyStore(password,data, keystoreName);
 //            String result  = KeyStoreUtil.readkeyStore("888999",path+keystoreName);
 //            System.out.println(result);
         } catch (IOException e) {

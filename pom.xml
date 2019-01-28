@@ -17,6 +17,10 @@
         <commons-lang.version>2.6</commons-lang.version>
         <fastjson.version>1.2.7</fastjson.version>
         <com.beust.version>1.72</com.beust.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <log4j.version>2.6.2</log4j.version>
+        <springcore.version>5.0.7.RELEASE</springcore.version>
+        <commons-io.version>2.5</commons-io.version>
     </properties>
 
     <dependencies>
@@ -26,48 +30,91 @@
             <version>1.1.0</version>
         </dependency>
 
+        <!--日志-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+
+        <!-- 流加载-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springcore.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>${jdk.version}</source>
-                <target>${jdk.version}</target>
-                <encoding>${project.build.sourceEncoding}</encoding>
-            </configuration>
-        </plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
 
-        <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-                <appendAssemblyId>false</appendAssemblyId>
-                <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                </descriptorRefs>
-                <archive>
-                    <manifest>
-                        <mainClass>one.inve.wallet.WalletUtil</mainClass>
-                        <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
-                        <useUniqueVersions>false</useUniqueVersions>
-                        <addClasspath>true</addClasspath>
-                        <classpathPrefix>lib/</classpathPrefix>
-                    </manifest>
-                </archive>
-            </configuration>
-            <executions>
-                <execution>
-                    <id>make-assembly</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>assembly</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>one.inve.wallet.WalletUtil</mainClass>
+                            <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <!--<classpathPrefix>/</classpathPrefix>-->
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assembly</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resource</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+                <excludes>
+                    <exclude>*.xml</exclude>
+                    <exclude>*.yaml</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 
 

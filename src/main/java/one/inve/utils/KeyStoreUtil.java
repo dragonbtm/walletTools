@@ -1,9 +1,7 @@
 package one.inve.utils;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
@@ -25,18 +23,10 @@ public class KeyStoreUtil {
 
     public static void main(String[] args) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
         String storepass = "888999";
-        String readPath = "D:/zz.keystore";
+        String readPath = "zz.keystore";
         generateKeyStore(storepass,"123123123123",readPath);
 
         String AAA = readkeyStore(storepass,readPath);
-    }
-
-    public static InputStream getResource(String location) throws IOException {
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        InputStream in = resolver.getResource(location).getInputStream();
-        byte[] byteArray = IOUtils.toByteArray(in);
-        in.close();
-        return new ByteArrayInputStream(byteArray);
     }
 
 
